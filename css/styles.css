@@ -14,10 +14,22 @@ body {
     background-image: url("../images/mainPageImage.png");
     background-repeat: no-repeat;
     background-position: center;
-    width: 50vmax;
+    width: 50vw;
 }
 
 .mainPage {
     background-color: antiquewhite;
-    width: 50vmax;
+    width: 50vw;
+}
+
+.mainPageVoid {
+    height: 50vh;
+}
+
+.mainPageLogin {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
