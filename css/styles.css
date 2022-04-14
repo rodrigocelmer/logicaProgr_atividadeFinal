@@ -30,7 +30,7 @@ a {
     height: 50vh;
 }
 
-.mainPageLogin {
+.mainPageLogin, .createAccountPage {
     height: 50vh;
     display: flex;
     flex-direction: column;
