@@ -1,0 +1,23 @@
+html, body, * {
+    margin: 2px;
+    padding: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+.leftImage {
+    background-image: url("../images/mainPageImage.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50vmax;
+}
+
+.mainPage {
+    background-color: antiquewhite;
+    width: 50vmax;
+}
