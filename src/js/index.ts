@@ -19,7 +19,7 @@ const addNewUser = (event: Event) => {
     const   newUserName     = form_createAccount?.input_createUser.value,
             newUserPassword = form_createAccount?.input_createPassword.value,
             repeatPassword  = form_createAccount?.input_repeatPassword.value,
-            users        = readLocalStorage();
+            users           = readLocalStorage();
 
     if(newUserPassword !== repeatPassword)
     {
@@ -45,14 +45,18 @@ const accessInbox = (event: Event) => {
             accessPassword  = form_access?.input_password.value,
             users           = readLocalStorage();
 
-    console.log(accessUserName)
-    console.log(users)
-
-    const userFind = users.find((user) => {
+    const userFind = users.find(user => 
         user.userName === accessUserName
-    })
+    )
 
-    console.log(userFind)
+    if(userFind && (userFind.userPassword === accessPassword))
+    {
+        alert("loga os guri")
+    }
+    else
+    {
+        alert("Usuário ou senha inválidos!")   
+    }
 }
 
 form_access?.addEventListener('submit', accessInbox);

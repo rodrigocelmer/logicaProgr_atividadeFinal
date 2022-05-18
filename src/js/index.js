@@ -22,12 +22,13 @@ const addNewUser = (event) => {
 const accessInbox = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
     const accessUserName = form_access === null || form_access === void 0 ? void 0 : form_access.input_userName.value, accessPassword = form_access === null || form_access === void 0 ? void 0 : form_access.input_password.value, users = readLocalStorage();
-    console.log(accessUserName);
-    console.log(users);
-    const userFind = users.find((user) => {
-        user.userName === accessUserName;
-    });
-    console.log(userFind);
+    const userFind = users.find(user => user.userName === accessUserName);
+    if (userFind && (userFind.userPassword === accessPassword)) {
+        alert("loga os guri");
+    }
+    else {
+        alert("Usuário ou senha inválidos!");
+    }
 };
 form_access === null || form_access === void 0 ? void 0 : form_access.addEventListener('submit', accessInbox);
 form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.addEventListener('submit', addNewUser);
