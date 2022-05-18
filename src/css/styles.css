@@ -6,7 +6,6 @@ html, body, * {
 }
 
 body {
-    /* display: flex; */
     height: 100vh;
 }
 
@@ -86,4 +85,5 @@ input{
 
 table{
     width: 100vw;
+    margin-top: 200px;
 }
