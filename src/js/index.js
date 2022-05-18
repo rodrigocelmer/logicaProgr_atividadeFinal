@@ -24,7 +24,6 @@ const accessInbox = (event) => {
     const accessUserName = form_access === null || form_access === void 0 ? void 0 : form_access.input_userName.value, accessPassword = form_access === null || form_access === void 0 ? void 0 : form_access.input_password.value, users = readLocalStorage();
     const userFind = users.find(user => user.userName === accessUserName);
     if (userFind && (userFind.userPassword === accessPassword)) {
-        alert("loga os guri");
         document.location.href = './messages.html';
     }
     else {

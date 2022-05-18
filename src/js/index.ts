@@ -51,7 +51,6 @@ const accessInbox = (event: Event) => {
 
     if(userFind && (userFind.userPassword === accessPassword))
     {
-        alert("loga os guri")
         document.location.href = './messages.html'
     }
     else
