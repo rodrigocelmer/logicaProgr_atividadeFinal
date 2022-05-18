@@ -25,6 +25,7 @@ const accessInbox = (event) => {
     const userFind = users.find(user => user.userName === accessUserName);
     if (userFind && (userFind.userPassword === accessPassword)) {
         alert("loga os guri");
+        document.location.href = './messages.html';
     }
     else {
         alert("Usuário ou senha inválidos!");
