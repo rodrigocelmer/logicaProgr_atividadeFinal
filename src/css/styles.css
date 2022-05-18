@@ -71,6 +71,13 @@ input{
     margin: 10px;
 }
 
+.userInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #form_messages{
     display: inline-block;
     position: fixed;
