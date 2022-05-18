@@ -1,10 +1,16 @@
 const   form_access         = document.querySelector('#form_access') as HTMLFormElement,
         form_createAccount  = document.querySelector('#form_createAccount') as HTMLFormElement;
 
-const readLocalStorage = (): Array<any> => {
-    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]') as Array<any>;
+interface User{
+    // id:             number;
+    userName:       string;
+    userPassword:   string;
+}
 
-    return usuarios;
+const readLocalStorage = (): Array<User> => {
+    const users = JSON.parse(localStorage.getItem('users') || '[]') as Array<User>;
+
+    return users;
 }
 
 const addNewUser = (event: Event) => {
@@ -12,7 +18,8 @@ const addNewUser = (event: Event) => {
 
     const   newUserName     = form_createAccount?.input_createUser.value,
             newUserPassword = form_createAccount?.input_createPassword.value,
-            repeatPassword  = form_createAccount?.input_repeatPassword.value;
+            repeatPassword  = form_createAccount?.input_repeatPassword.value,
+            users        = readLocalStorage();
 
     if(newUserPassword !== repeatPassword)
     {
@@ -21,16 +28,32 @@ const addNewUser = (event: Event) => {
         return 0;
     }
 
-    const usuarios = readLocalStorage();
-
-    usuarios.push({
+    users.push({
         userName:       newUserName,
         userPassword:   newUserPassword
     })
 
-    localStorage.setItem('usuarios', JSON.stringify(usuarios))
+    localStorage.setItem('users', JSON.stringify(users))
 
     form_createAccount.reset();
 }
 
+const accessInbox = (event: Event) => {
+    event?.preventDefault();
+
+    const   accessUserName  = form_access?.input_userName.value,
+            accessPassword  = form_access?.input_password.value,
+            users           = readLocalStorage();
+
+    console.log(accessUserName)
+    console.log(users)
+
+    const userFind = users.find((user) => {
+        user.userName === accessUserName
+    })
+
+    console.log(userFind)
+}
+
+form_access?.addEventListener('submit', accessInbox);
 form_createAccount?.addEventListener('submit', addNewUser);
