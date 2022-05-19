@@ -145,12 +145,33 @@ const showUserMessages = () => {
                     <td>${message.details}</td>
                     <td>
                         <button>Editar</button>
-                        <button>Apagar</button>
+                        <button onclick="deleteMessage(${message.id})">Apagar</button>
                     </td>
                 </tr>
             `;
         }
     }
+}
+
+const deleteMessage= (id: number) => {
+    const messages = readLocalStorage('messages') as Array<UserMessages>;
+
+    const msgIndex = messages.findIndex((message) => message.id === id);
+
+    console.log(messages);
+    console.log(msgIndex)
+
+    if(msgIndex < 0){
+        return;
+    }
+
+    messages.splice(msgIndex, 1);
+
+    localStorage.setItem('messages', JSON.stringify(messages))
+
+    alert("Mensagem deletada com sucesso!");
+
+    showUserMessages();
 }
 
 const defineID = (): number => {
@@ -159,7 +180,7 @@ const defineID = (): number => {
     let     max         = 0;
     
     messages.forEach((message) => {
-        if((message.userName === userLogged) && (message.id > max)){
+        if((message.id > max)){
             max = message.id;
         }
     })
