@@ -98,7 +98,6 @@ const accessInbox = (event: Event) => {
     }
 
     localStorage.setItem('userLogged', JSON.stringify(userFind.userName));
-    console.log(userFind.userName)
     
     showUserMessages();
 }
@@ -157,9 +156,6 @@ const deleteMessage= (id: number) => {
     const messages = readLocalStorage('messages') as Array<UserMessages>;
 
     const msgIndex = messages.findIndex((message) => message.id === id);
-
-    console.log(messages);
-    console.log(msgIndex)
 
     if(msgIndex < 0){
         return;
