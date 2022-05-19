@@ -1,6 +1,7 @@
 const   form_access         = document.querySelector('#form_access') as HTMLFormElement,
         form_createAccount  = document.querySelector('#form_createAccount') as HTMLFormElement,
-        form_messages       = document.querySelector('#form_messages') as HTMLFormElement;
+        form_messages       = document.querySelector('#form_messages') as HTMLFormElement,
+        tbody               = document.querySelector('#tbody') as HTMLElement;
 
 interface User{
     // id:             number;
@@ -75,7 +76,12 @@ const accessInbox = (event: Event) => {
     else
     {
         alert("Usuário ou senha inválidos!")   
+        form_access.reset();
+        return 0
     }
+
+    console.log("hm")
+    showUserMessages();
 }
 
 const saveMessage = (event: Event) => {
@@ -94,8 +100,31 @@ const saveMessage = (event: Event) => {
     localStorage.setItem('messages', JSON.stringify(messages))
 
     form_messages.reset()
+
+    showUserMessages();
+}
+
+const showUserMessages = () => {
+    const messages = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
+
+    tbody.innerHTML = ""
+
+    for(const message of messages)
+    {
+        tbody.innerHTML += `
+            <tr>
+                <td>id</td>
+                <td>${message.description}</td>
+                <td>${message.details}</td>
+                <td>
+                    <button>Editar</button>
+                    <button>Apagar</button>
+                </td>
+            </tr>
+        `
+    }
 }
 
 form_access?.addEventListener('submit', accessInbox);
 form_createAccount?.addEventListener('submit', addNewUser);
-form_messages.addEventListener('submit', saveMessage);
+form_messages?.addEventListener('submit', saveMessage);

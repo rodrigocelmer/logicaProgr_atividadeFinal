@@ -1,5 +1,5 @@
 "use strict";
-const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages');
+const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
 const readLocalStorage = () => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     return users;
@@ -35,7 +35,11 @@ const accessInbox = (event) => {
     }
     else {
         alert("Usuário ou senha inválidos!");
+        form_access.reset();
+        return 0;
     }
+    console.log("hm");
+    showUserMessages();
 };
 const saveMessage = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
@@ -47,7 +51,25 @@ const saveMessage = (event) => {
     });
     localStorage.setItem('messages', JSON.stringify(messages));
     form_messages.reset();
+    showUserMessages();
+};
+const showUserMessages = () => {
+    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+    tbody.innerHTML = "";
+    for (const message of messages) {
+        tbody.innerHTML += `
+            <tr>
+                <td>id</td>
+                <td>${message.description}</td>
+                <td>${message.details}</td>
+                <td>
+                    <button>Editar</button>
+                    <button>Apagar</button>
+                </td>
+            </tr>
+        `;
+    }
 };
 form_access === null || form_access === void 0 ? void 0 : form_access.addEventListener('submit', accessInbox);
 form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.addEventListener('submit', addNewUser);
-form_messages.addEventListener('submit', saveMessage);
+form_messages === null || form_messages === void 0 ? void 0 : form_messages.addEventListener('submit', saveMessage);
