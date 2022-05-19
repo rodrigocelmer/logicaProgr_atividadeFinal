@@ -143,7 +143,7 @@ const showUserMessages = () => {
                     <td>${message.description}</td>
                     <td>${message.details}</td>
                     <td>
-                        <button>Editar</button>
+                        <button onclick="editMessage(${message.id})">Editar</button>
                         <button onclick="deleteMessage(${message.id})">Apagar</button>
                     </td>
                 </tr>
@@ -152,21 +152,43 @@ const showUserMessages = () => {
     }
 }
 
-const deleteMessage= (id: number) => {
+const deleteMessage = (id: number) => {
     const messages = readLocalStorage('messages') as Array<UserMessages>;
 
     const msgIndex = messages.findIndex((message) => message.id === id);
-
-    if(msgIndex < 0){
-        return;
-    }
 
     messages.splice(msgIndex, 1);
 
     localStorage.setItem('messages', JSON.stringify(messages))
 
-    alert("Mensagem deletada com sucesso!");
+    showUserMessages();
+}
 
+const editMessage = (id: number) => {
+    const messages = readLocalStorage('messages') as Array<UserMessages>;
+
+    const msgIndex = messages.findIndex((message) => message.id === id);
+
+    const editOption = Number(prompt("Escolha a opção para editar \n[1] - Descrição\n[2] - Detalhamento\n[3] - Ambos"))
+
+    switch(editOption)
+    {
+        case 1:
+            messages[msgIndex].description = prompt("Informe a nova descrição.") as string;
+        break
+        case 2:
+            messages[msgIndex].details = prompt("Informe o novo detalhamento.") as string;
+        break
+        case 3:
+            messages[msgIndex].description = prompt("Informe a nova descrição.") as string;
+            messages[msgIndex].details = prompt("Informe o novo detalhamento.") as string;
+        break
+        default:
+            alert("Opção inválida!");
+        break
+    }
+    
+    localStorage.setItem('messages', JSON.stringify(messages))
     showUserMessages();
 }
 
