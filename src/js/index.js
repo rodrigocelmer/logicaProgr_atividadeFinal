@@ -23,6 +23,7 @@ const addNewUser = (event) => {
         userPassword: newUserPassword
     });
     localStorage.setItem('users', JSON.stringify(users));
+    alert("Novo usuário criado com sucesso!");
     form_createAccount.reset();
 };
 const accessInbox = (event) => {
