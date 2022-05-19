@@ -1,6 +1,5 @@
 "use strict";
 const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
-var userLogged = "";
 const readLocalStorage = () => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     return users;
@@ -40,12 +39,13 @@ const accessInbox = (event) => {
         form_access.reset();
         return 0;
     }
-    userLogged = userFind.userName;
-    console.log(userLogged);
+    localStorage.setItem('userLogged', JSON.stringify(userFind.userName));
+    console.log(userFind.userName);
     showUserMessages();
 };
 const saveMessage = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
+    const userLogged = JSON.parse(localStorage.getItem('userLogged') || '[]');
     console.log(userLogged);
     const newDescription = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDescr.value, newDetails = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDetails.value, messages = JSON.parse(localStorage.getItem('messages') || '[]');
     messages.push({
@@ -60,23 +60,27 @@ const saveMessage = (event) => {
 };
 const showUserMessages = () => {
     const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+    const userLogged = JSON.parse(localStorage.getItem('userLogged') || '[]');
     if (tbody) {
         tbody.innerHTML = "";
     }
     for (const message of messages) {
-        tbody.innerHTML += `
-            <tr>
-                <td>id</td>
-                <td>${message.description}</td>
-                <td>${message.details}</td>
-                <td>
-                    <button>Editar</button>
-                    <button>Apagar</button>
-                </td>
-            </tr>
-        `;
+        if (message.userName === userLogged) {
+            tbody.innerHTML += `
+                <tr>
+                    <td>id</td>
+                    <td>${message.description}</td>
+                    <td>${message.details}</td>
+                    <td>
+                        <button>Editar</button>
+                        <button>Apagar</button>
+                    </td>
+                </tr>
+            `;
+        }
     }
 };
 form_access === null || form_access === void 0 ? void 0 : form_access.addEventListener('submit', accessInbox);
 form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.addEventListener('submit', addNewUser);
 form_messages === null || form_messages === void 0 ? void 0 : form_messages.addEventListener('submit', saveMessage);
+document.addEventListener('DOMContentLoaded', showUserMessages);

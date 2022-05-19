@@ -3,9 +3,7 @@ const   form_access         = document.querySelector('#form_access') as HTMLForm
         form_messages       = document.querySelector('#form_messages') as HTMLFormElement,
         tbody               = document.querySelector('#tbody') as HTMLElement;
 
-var     userLogged: string  = "";
-
-interface User{
+        interface User{
     userName:       string;
     userPassword:   string;
 }
@@ -83,14 +81,16 @@ const accessInbox = (event: Event) => {
         return 0
     }
 
-    userLogged = userFind.userName;
-    console.log(userLogged)
+    localStorage.setItem('userLogged', JSON.stringify(userFind.userName));
+    console.log(userFind.userName)
     
     showUserMessages();
 }
 
 const saveMessage = (event: Event) => {
     event?.preventDefault();
+
+    const   userLogged      = JSON.parse(localStorage.getItem('userLogged') || '[]') as string;
 
     console.log(userLogged)
 
@@ -114,6 +114,7 @@ const saveMessage = (event: Event) => {
 
 const showUserMessages = () => {
     const messages = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
+    const   userLogged      = JSON.parse(localStorage.getItem('userLogged') || '[]') as string;
 
     if(tbody)
     {
@@ -122,20 +123,24 @@ const showUserMessages = () => {
 
     for(const message of messages)
     {
-        tbody.innerHTML += `
-            <tr>
-                <td>id</td>
-                <td>${message.description}</td>
-                <td>${message.details}</td>
-                <td>
-                    <button>Editar</button>
-                    <button>Apagar</button>
-                </td>
-            </tr>
-        `
+        if(message.userName === userLogged)
+        {
+            tbody.innerHTML += `
+                <tr>
+                    <td>id</td>
+                    <td>${message.description}</td>
+                    <td>${message.details}</td>
+                    <td>
+                        <button>Editar</button>
+                        <button>Apagar</button>
+                    </td>
+                </tr>
+            `;
+        }
     }
 }
 
 form_access?.addEventListener('submit', accessInbox);
 form_createAccount?.addEventListener('submit', addNewUser);
 form_messages?.addEventListener('submit', saveMessage);
+document.addEventListener('DOMContentLoaded', showUserMessages);
