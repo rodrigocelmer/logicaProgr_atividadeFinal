@@ -14,7 +14,7 @@ a {
 }
 
 .leftImage {
-    background-image: url("../images/mainPageImage.png");
+    /* background-image: url("../images/mainPageImage.png"); */
     background-repeat: no-repeat;
     background-position: center;
     width: 50vw;

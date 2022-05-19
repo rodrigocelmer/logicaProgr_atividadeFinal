@@ -1,5 +1,6 @@
 "use strict";
 const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
+var userLogged = "";
 const readLocalStorage = () => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     return users;
@@ -25,6 +26,7 @@ const addNewUser = (event) => {
     localStorage.setItem('users', JSON.stringify(users));
     alert("Novo usuário criado com sucesso!");
     form_createAccount.reset();
+    document.location.href = './index.html';
 };
 const accessInbox = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
@@ -38,14 +40,17 @@ const accessInbox = (event) => {
         form_access.reset();
         return 0;
     }
-    console.log("hm");
+    userLogged = userFind.userName;
+    console.log(userLogged);
     showUserMessages();
 };
 const saveMessage = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
+    console.log(userLogged);
     const newDescription = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDescr.value, newDetails = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDetails.value, messages = JSON.parse(localStorage.getItem('messages') || '[]');
     messages.push({
-        userName: "user namesson",
+        // id:
+        userName: userLogged,
         description: newDescription,
         details: newDetails
     });
@@ -55,7 +60,9 @@ const saveMessage = (event) => {
 };
 const showUserMessages = () => {
     const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-    tbody.innerHTML = "";
+    if (tbody) {
+        tbody.innerHTML = "";
+    }
     for (const message of messages) {
         tbody.innerHTML += `
             <tr>

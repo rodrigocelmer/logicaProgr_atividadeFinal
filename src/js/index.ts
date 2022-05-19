@@ -3,8 +3,9 @@ const   form_access         = document.querySelector('#form_access') as HTMLForm
         form_messages       = document.querySelector('#form_messages') as HTMLFormElement,
         tbody               = document.querySelector('#tbody') as HTMLElement;
 
+var     userLogged: string  = "";
+
 interface User{
-    // id:             number;
     userName:       string;
     userPassword:   string;
 }
@@ -56,6 +57,8 @@ const addNewUser = (event: Event) => {
     alert("Novo usuário criado com sucesso!")
 
     form_createAccount.reset();
+
+    document.location.href = './index.html'
 }
 
 const accessInbox = (event: Event) => {
@@ -80,19 +83,24 @@ const accessInbox = (event: Event) => {
         return 0
     }
 
-    console.log("hm")
+    userLogged = userFind.userName;
+    console.log(userLogged)
+    
     showUserMessages();
 }
 
 const saveMessage = (event: Event) => {
     event?.preventDefault();
 
+    console.log(userLogged)
+
     const   newDescription  = form_messages?.input_msgDescr.value,
             newDetails      = form_messages?.input_msgDetails.value,
             messages        = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
 
     messages.push({
-        userName:       "user namesson",
+        // id:
+        userName:       userLogged,
         description:    newDescription,
         details:        newDetails
     })
@@ -107,7 +115,10 @@ const saveMessage = (event: Event) => {
 const showUserMessages = () => {
     const messages = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
 
-    tbody.innerHTML = ""
+    if(tbody)
+    {
+        tbody.innerHTML = ""
+    }
 
     for(const message of messages)
     {
