@@ -1,12 +1,26 @@
 "use strict";
 const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
-const readLocalStorage = () => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    return users;
+const readLocalStorage = (option) => {
+    let infoLocalStorage;
+    switch (option) {
+        case 'users':
+            infoLocalStorage = JSON.parse(localStorage.getItem('users') || '[]');
+            break;
+        case 'messages':
+            infoLocalStorage = JSON.parse(localStorage.getItem('messages') || '[]');
+            break;
+        case 'userLogged':
+            infoLocalStorage = JSON.parse(localStorage.getItem('userLogged') || '');
+            break;
+        default:
+            infoLocalStorage = [];
+            break;
+    }
+    return infoLocalStorage;
 };
 const addNewUser = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
-    const newUserName = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_createUser.value, newUserPassword = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_createPassword.value, repeatPassword = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_repeatPassword.value, users = readLocalStorage();
+    const newUserName = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_createUser.value, newUserPassword = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_createPassword.value, repeatPassword = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_repeatPassword.value, users = readLocalStorage('users');
     const userFind = users.find(user => user.userName === newUserName);
     if (userFind) {
         alert(`O usuário ${newUserName} já existe!`);
@@ -29,7 +43,7 @@ const addNewUser = (event) => {
 };
 const accessInbox = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
-    const accessUserName = form_access === null || form_access === void 0 ? void 0 : form_access.input_userName.value, accessPassword = form_access === null || form_access === void 0 ? void 0 : form_access.input_password.value, users = readLocalStorage();
+    const accessUserName = form_access === null || form_access === void 0 ? void 0 : form_access.input_userName.value, accessPassword = form_access === null || form_access === void 0 ? void 0 : form_access.input_password.value, users = readLocalStorage('users');
     const userFind = users.find(user => user.userName === accessUserName);
     if (userFind && (userFind.userPassword === accessPassword)) {
         document.location.href = './messages.html';
@@ -45,9 +59,7 @@ const accessInbox = (event) => {
 };
 const saveMessage = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
-    const userLogged = JSON.parse(localStorage.getItem('userLogged') || '[]');
-    console.log(userLogged);
-    const newDescription = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDescr.value, newDetails = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDetails.value, messages = JSON.parse(localStorage.getItem('messages') || '[]');
+    const newDescription = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDescr.value, newDetails = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDetails.value, messages = readLocalStorage('messages'), userLogged = readLocalStorage('userLogged');
     messages.push({
         id: defineID() + 1,
         userName: userLogged,
@@ -59,8 +71,7 @@ const saveMessage = (event) => {
     showUserMessages();
 };
 const showUserMessages = () => {
-    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-    const userLogged = JSON.parse(localStorage.getItem('userLogged') || '[]');
+    const messages = readLocalStorage('messages'), userLogged = readLocalStorage('userLogged');
     if (tbody) {
         tbody.innerHTML = "";
     }
@@ -81,9 +92,8 @@ const showUserMessages = () => {
     }
 };
 const defineID = () => {
+    const messages = readLocalStorage('messages'), userLogged = readLocalStorage('userLogged');
     let max = 0;
-    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-    const userLogged = JSON.parse(localStorage.getItem('userLogged') || '[]');
     messages.forEach((message) => {
         if ((message.userName === userLogged) && (message.id > max)) {
             max = message.id;

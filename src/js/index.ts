@@ -3,7 +3,7 @@ const   form_access         = document.querySelector('#form_access') as HTMLForm
         form_messages       = document.querySelector('#form_messages') as HTMLFormElement,
         tbody               = document.querySelector('#tbody') as HTMLElement;
 
-        interface User{
+interface User{
     userName:       string;
     userPassword:   string;
 }
@@ -15,10 +15,26 @@ interface UserMessages{
     details:        string;
 }
 
-const readLocalStorage = (): Array<User> => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]') as Array<User>;
+const readLocalStorage = (option: string): Array<User> | Array<UserMessages> | string => {
+    let infoLocalStorage: Array<User> | Array<UserMessages> | string;
 
-    return users;
+    switch(option)
+    {
+        case 'users':
+            infoLocalStorage = JSON.parse(localStorage.getItem('users') || '[]') as Array<User>;
+        break;
+        case 'messages':
+            infoLocalStorage = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
+        break;
+        case 'userLogged':
+            infoLocalStorage = JSON.parse(localStorage.getItem('userLogged') || '') as string;
+        break;
+        default:
+            infoLocalStorage = [];
+        break;
+    }
+
+    return infoLocalStorage;
 }
 
 const addNewUser = (event: Event) => {
@@ -27,7 +43,7 @@ const addNewUser = (event: Event) => {
     const   newUserName     = form_createAccount?.input_createUser.value,
             newUserPassword = form_createAccount?.input_createPassword.value,
             repeatPassword  = form_createAccount?.input_repeatPassword.value,
-            users           = readLocalStorage();
+            users           = readLocalStorage('users') as Array<User>;
 
     const userFind = users.find(user => 
         user.userName === newUserName
@@ -64,7 +80,7 @@ const accessInbox = (event: Event) => {
 
     const   accessUserName  = form_access?.input_userName.value,
             accessPassword  = form_access?.input_password.value,
-            users           = readLocalStorage();
+            users           = readLocalStorage('users') as Array<User>;
 
     const userFind = users.find(user => 
         user.userName === accessUserName
@@ -90,13 +106,10 @@ const accessInbox = (event: Event) => {
 const saveMessage = (event: Event) => {
     event?.preventDefault();
 
-    const   userLogged      = JSON.parse(localStorage.getItem('userLogged') || '[]') as string;
-
-    console.log(userLogged)
-
     const   newDescription  = form_messages?.input_msgDescr.value,
             newDetails      = form_messages?.input_msgDetails.value,
-            messages        = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
+            messages        = readLocalStorage('messages') as Array<UserMessages>,
+            userLogged      = readLocalStorage('userLogged') as string;
 
     messages.push({
         id:             defineID() + 1,
@@ -113,8 +126,8 @@ const saveMessage = (event: Event) => {
 }
 
 const showUserMessages = () => {
-    const messages = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
-    const   userLogged      = JSON.parse(localStorage.getItem('userLogged') || '[]') as string;
+    const   messages    = readLocalStorage('messages') as Array<UserMessages>,
+            userLogged  = readLocalStorage('userLogged') as string;
 
     if(tbody)
     {
@@ -141,9 +154,9 @@ const showUserMessages = () => {
 }
 
 const defineID = (): number => {
-    let max = 0;
-    const messages = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
-    const   userLogged      = JSON.parse(localStorage.getItem('userLogged') || '[]') as string;
+    const   messages    = readLocalStorage('messages') as Array<UserMessages>,
+            userLogged  = readLocalStorage('userLogged') as string;
+    let     max         = 0;
     
     messages.forEach((message) => {
         if((message.userName === userLogged) && (message.id > max)){
