@@ -9,7 +9,7 @@ const   form_access         = document.querySelector('#form_access') as HTMLForm
 }
 
 interface UserMessages{
-    // id:             number;
+    id:             number;
     userName:       string;
     description:    string;
     details:        string;
@@ -99,7 +99,7 @@ const saveMessage = (event: Event) => {
             messages        = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
 
     messages.push({
-        // id:
+        id:             defineID() + 1,
         userName:       userLogged,
         description:    newDescription,
         details:        newDetails
@@ -127,7 +127,7 @@ const showUserMessages = () => {
         {
             tbody.innerHTML += `
                 <tr>
-                    <td>id</td>
+                    <td>${message.id}</td>
                     <td>${message.description}</td>
                     <td>${message.details}</td>
                     <td>
@@ -138,6 +138,20 @@ const showUserMessages = () => {
             `;
         }
     }
+}
+
+const defineID = (): number => {
+    let max = 0;
+    const messages = JSON.parse(localStorage.getItem('messages') || '[]') as Array<UserMessages>;
+    const   userLogged      = JSON.parse(localStorage.getItem('userLogged') || '[]') as string;
+    
+    messages.forEach((message) => {
+        if((message.userName === userLogged) && (message.id > max)){
+            max = message.id;
+        }
+    })
+
+    return max
 }
 
 form_access?.addEventListener('submit', accessInbox);

@@ -49,7 +49,7 @@ const saveMessage = (event) => {
     console.log(userLogged);
     const newDescription = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDescr.value, newDetails = form_messages === null || form_messages === void 0 ? void 0 : form_messages.input_msgDetails.value, messages = JSON.parse(localStorage.getItem('messages') || '[]');
     messages.push({
-        // id:
+        id: defineID() + 1,
         userName: userLogged,
         description: newDescription,
         details: newDetails
@@ -68,7 +68,7 @@ const showUserMessages = () => {
         if (message.userName === userLogged) {
             tbody.innerHTML += `
                 <tr>
-                    <td>id</td>
+                    <td>${message.id}</td>
                     <td>${message.description}</td>
                     <td>${message.details}</td>
                     <td>
@@ -79,6 +79,17 @@ const showUserMessages = () => {
             `;
         }
     }
+};
+const defineID = () => {
+    let max = 0;
+    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+    const userLogged = JSON.parse(localStorage.getItem('userLogged') || '[]');
+    messages.forEach((message) => {
+        if ((message.userName === userLogged) && (message.id > max)) {
+            max = message.id;
+        }
+    });
+    return max;
 };
 form_access === null || form_access === void 0 ? void 0 : form_access.addEventListener('submit', accessInbox);
 form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.addEventListener('submit', addNewUser);
