@@ -5,13 +5,12 @@ html, body, * {
     font-size: 25px;
 }
 
-body {
+#bodyIndex, #bodyCreateAccount {
     height: 100vh;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* background-attachment: fixed; */
 }
 
 a {
@@ -20,7 +19,6 @@ a {
 }
 
 .leftImage {
-    /* background-image: url("../images/mainPageImage.png"); */
     background-repeat: no-repeat;
     background-position: center;
     width: 50vw;
@@ -28,7 +26,6 @@ a {
 }
 
 .mainPage {
-    /* background-color: antiquewhite; */
     width: 50vw;
     position: fixed;
     top: 0px;
@@ -73,6 +70,10 @@ button{
     color: white;
 }
 
+.divForm{
+    margin-bottom: 500px;
+}
+
 .logoutBtn{    
     position: fixed;
     top: 0px;
@@ -101,10 +102,12 @@ input[type=submit]{
 #form_messages{
     display: inline-block;
     position: fixed;
-    margin-top: 100px;
+    top: 50px;
 }
 
 table{
     width: 100vw;
-    margin-top: 200px;
+    margin-top: 50px;
+    position: fixed;
+    top: 100px;
 }
