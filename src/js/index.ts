@@ -143,8 +143,8 @@ const showUserMessages = () => {
                     <td>${message.description}</td>
                     <td>${message.details}</td>
                     <td>
-                        <button onclick="editMessage(${message.id})">Editar</button>
-                        <button onclick="deleteMessage(${message.id})">Apagar</button>
+                        <button class="editDeleteBtn" onclick="editMessage(${message.id})">Editar</button>
+                        <button class="editDeleteBtn" onclick="deleteMessage(${message.id})">Apagar</button>
                     </td>
                 </tr>
             `;
