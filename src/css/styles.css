@@ -5,12 +5,13 @@ html, body, * {
     font-size: 25px;
 }
 
-#bodyIndex, #bodyCreateAccount {
+body {
     height: 100vh;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 
 h1{
@@ -133,4 +134,38 @@ table{
 
 tr{
     box-shadow: 0px 1px 0px 0px darkgray;
+}
+
+.mainPageLogin {
+    animation-name: mainPageLogin;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+
+.createAccountPage {
+    animation-name: createAccountPage;
+    animation-delay: 2s;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+@keyframes mainPageLogin {
+    0% {
+        transform: translateX(50%) translateY(200%);
+    }
+    50% {
+        transform: translateX(50%) translateY(0%);
+    }
+    100% {
+        transform: translateX(0%) translateY(0%);
+    }
+}
+
+@keyframes createAccountPage {
+    0% {
+        transform: translateY(200%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
 }
