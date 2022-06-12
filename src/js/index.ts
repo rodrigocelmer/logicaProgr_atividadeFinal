@@ -86,19 +86,15 @@ const accessInbox = (event: Event) => {
         user.userName === accessUserName
     )
 
-    if(userFind && (userFind.userPassword === accessPassword))
-    {
-        document.location.href = './messages.html'
-    }
-    else
+    if(!userFind || (userFind.userPassword !== accessPassword))
     {
         alert("Usuário ou senha inválidos!")   
         form_access.reset();
-        return 0
+        return;
     }
 
+    document.location.href = './messages.html'
     localStorage.setItem('userLogged', JSON.stringify(userFind.userName));
-    
     showUserMessages();
 }
 

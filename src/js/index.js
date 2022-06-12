@@ -45,14 +45,12 @@ const accessInbox = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
     const accessUserName = form_access === null || form_access === void 0 ? void 0 : form_access.input_userName.value, accessPassword = form_access === null || form_access === void 0 ? void 0 : form_access.input_password.value, users = readLocalStorage('users');
     const userFind = users.find(user => user.userName === accessUserName);
-    if (userFind && (userFind.userPassword === accessPassword)) {
-        document.location.href = './messages.html';
-    }
-    else {
+    if (!userFind || (userFind.userPassword !== accessPassword)) {
         alert("Usuário ou senha inválidos!");
         form_access.reset();
-        return 0;
+        return;
     }
+    document.location.href = './messages.html';
     localStorage.setItem('userLogged', JSON.stringify(userFind.userName));
     showUserMessages();
 };
