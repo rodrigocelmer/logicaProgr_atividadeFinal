@@ -1,8 +1,8 @@
 "use strict";
 const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
-const readLocalStorage = (option) => {
+const readLocalStorage = (key) => {
     let infoLocalStorage;
-    switch (option) {
+    switch (key) {
         case 'users':
             infoLocalStorage = JSON.parse(localStorage.getItem('users') || '[]');
             break;

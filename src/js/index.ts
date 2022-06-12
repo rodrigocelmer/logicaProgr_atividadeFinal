@@ -15,10 +15,10 @@ interface UserMessages{
     details:        string;
 }
 
-const readLocalStorage = (option: string): Array<User> | Array<UserMessages> | string => {
+const readLocalStorage = (key: string): Array<User> | Array<UserMessages> | string => {
     let infoLocalStorage: Array<User> | Array<UserMessages> | string;
 
-    switch(option)
+    switch(key)
     {
         case 'users':
             infoLocalStorage = JSON.parse(localStorage.getItem('users') || '[]') as Array<User>;
