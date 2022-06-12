@@ -118,7 +118,7 @@ const editMessage = (id) => {
     showUserMessages();
 };
 const defineID = () => {
-    const messages = readLocalStorage('messages'), userLogged = readLocalStorage('userLogged');
+    const messages = readLocalStorage('messages');
     let max = 0;
     messages.forEach((message) => {
         if ((message.id > max)) {

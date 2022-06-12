@@ -189,8 +189,7 @@ const editMessage = (id: number) => {
 }
 
 const defineID = (): number => {
-    const   messages    = readLocalStorage('messages') as Array<UserMessages>,
-            userLogged  = readLocalStorage('userLogged') as string;
+    const   messages    = readLocalStorage('messages') as Array<UserMessages>;
     let     max         = 0;
     
     messages.forEach((message) => {
