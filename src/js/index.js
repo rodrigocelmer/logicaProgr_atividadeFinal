@@ -40,7 +40,6 @@ const addNewUser = (event) => {
     localStorage.setItem('users', JSON.stringify(users));
     alert("Novo usuário criado com sucesso!");
     form_createAccount.reset();
-    document.location.href = './index.html';
 };
 const accessInbox = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();

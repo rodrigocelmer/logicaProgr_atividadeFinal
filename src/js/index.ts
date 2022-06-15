@@ -73,8 +73,6 @@ const addNewUser = (event: Event) => {
     alert("Novo usuário criado com sucesso!")
 
     form_createAccount.reset();
-
-    document.location.href = './index.html'
 }
 
 const accessInbox = (event: Event) => {
