@@ -11,37 +11,35 @@
 </head>
 <body class="container-fluid vh-100">
     <div class="row h-100 d-flex justify-content-center align-items-center justify-content-around">
-        <div class="mainPageLogin col-6 bg-info h-75 bg-opacity-25 rounded-3">
+        <div class="mainPageLogin col-md-6 col-sm-8 bg-info h-75 bg-opacity-25 rounded-3">
             <div class="row h-100 d-flex flex-column justify-content-center align-items-center">
                 <form id="form_access">
                     <div class="mainMessage">
                         ENTRAR NO SISTEMA DE RECADOS
                     </div>
-                    <div class="userInputs">
-                        <input required type="text" name="input_userName" id="input_userName" placeholder="User name">
-                        <input required type="password" name="input_password" id="input_password" placeholder="Password">
-                    </div>
-                    <input type="submit" class="buttonEnter" value="ENTRAR"></input>
+                    <!-- <div class="userInputs"> -->
+                        <input required type="text" class="form-control" name="input_userName" id="input_userName" placeholder="User name">
+                        <input required type="password" class="form-control" name="input_password" id="input_password" placeholder="Password">
+                    <!-- </div> -->
+                    <input type="submit" class="buttonEnter btn btn-outline-secondary" value="ENTRAR"></input>
                     <div class="createAccount">
                         <a href="./createAccount.html">CRIAR CONTA</a>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="createAccountPage col-4 bg-black h-75 bg-opacity-25 rounded-3">
+        <div class="createAccountPage col-md-4 col-sm-8  bg-black h-75 bg-opacity-25 rounded-3">
             <div class="row h-100 text-light d-flex flex-column justify-content-center align-items-center">
                 <form id="form_createAccount">
                     <div class="createAccountMessage">
                         CRIAR CONTA
                     </div>
-                    <div class="userInputsCreateAccount">
-                        <input required type="text" name="input_createUser" id="input_createUser" placeholder="User name">
-                        <br> 
-                        <input required type="password" name="input_createPassword" id="input_createPassword" placeholder="Password">
-                        <br> 
-                        <input required type="password" name="input_repeatPassword" id="input_repeatPassword" placeholder="Repeat password">
-                    </div>
-                    <input type="submit" class="buttonCreateAccount" value="CRIAR CONTA AGORA"></input>
+                    <!-- <div class="userInputsCreateAccount"> -->
+                        <input required type="text" class="form-control" name="input_createUser" id="input_createUser" placeholder="User name">
+                        <input required type="password" class="form-control" name="input_createPassword" id="input_createPassword" placeholder="Password">
+                        <input required type="password" class="form-control" name="input_repeatPassword" id="input_repeatPassword" placeholder="Repeat password">
+                    <!-- </div> -->
+                    <input type="submit" class="buttonCreateAccount btn btn-outline-secondary col-10" value="CRIAR CONTA AGORA"></input>
                     <div class="createAccount">
                         <a href="./index.html">VOLTAR</a>
                     </div>

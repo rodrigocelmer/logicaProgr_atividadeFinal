@@ -63,13 +63,13 @@ a {
 }
 
 .buttonEnter, .buttonCreateAccount, .logoutBtn{
-    all: unset;
+    /* all: unset;
     border: none;
     margin: 5px;
     padding: 5px;
     width: 75%;
     height: 50px;
-    text-align: center;
+    text-align: center; */
     background-color: #f57123;
     color: white;
 }
