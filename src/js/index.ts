@@ -40,8 +40,6 @@ const readLocalStorage = (option: string): Array<User> | Array<UserMessages> | s
 const addNewUser = (event: Event) => {
     event?.preventDefault();
 
-    console.log("addNewUser")
-
     const   newUserName     = form_createAccount?.input_createUser.value,
             newUserPassword = form_createAccount?.input_createPassword.value,
             repeatPassword  = form_createAccount?.input_repeatPassword.value,
@@ -77,8 +75,6 @@ const addNewUser = (event: Event) => {
 
 const accessInbox = (event: Event) => {
     event?.preventDefault();
-
-    console.log("accessInbox")
 
     const   accessUserName  = form_access?.input_userName.value,
             accessPassword  = form_access?.input_password.value,
