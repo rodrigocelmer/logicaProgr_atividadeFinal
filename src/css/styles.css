@@ -61,7 +61,6 @@ a {
 }
 
 .mainPageLogin, .createAccountPage, form {
-    height: 65vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
