@@ -9,29 +9,33 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="container-fluid vh-100 bg-dark">
-    <div class="row h-100 bg-info d-flex">
-        <div class="col h-75 bg-secondary">                     <!-- work from here -->
+<body class="container-fluid vh-100">
+    <div class="row h-100 d-flex">
+        <div class="col">                     <!-- work from here -->
             <div class="row justify-content-between">   <!-- meus recados logout -->
-                <div class="col-3 bg-body">
-                    Meus Recados
+                <div class="col-4">
+                    <h1>Meus recados</h1>
                 </div>
-                <div class="col-1 bg-body">
-                    Logout Btn
-                </div>
-            </div>
-            <div class="row m-3">                           <!-- inputs -->
-                <div class="col-4 bg-success">
-                    Input 1
-                </div>
-                <div class="col-4 bg-success">
-                    Input 2
-                </div>
-                <div class="col-2 bg-warning">
-                    Btn salvar
+                <div class="col-2 d-flex align-items-center justify-content-center">
+                    <button class="logoutBtn btn btn-outline-secondary">
+                        <a href="./index.html">Logout</a>
+                    </button>
                 </div>
             </div>
-            <div class="row bg-body">
+            <div class="row my-3">                           <!-- inputs -->
+                <form class="d-flex flex-row formMessages justify-content-start">
+                    <div class="col-4">
+                        <input required class="form-control" type="text" name="input_msgDescr" id="input_msgDescr" placeholder="Descrição">
+                    </div>
+                    <div class="col-4 ms-1">
+                        <input required class="form-control" type="text" name="input_msgDetails" id="input_msgDetails" placeholder="Detalhamento">
+                    </div>
+                    <div class="col-1 ms-3">
+                        <input class="form-control" type="submit" value="Salvar">
+                    </div>
+                </form>
+            </div>
+            <div class="row">
                 <div class="col table-responsive">
                     <table class="table table-striped text-center">
                         <thead>
@@ -42,26 +46,7 @@
                                 <th scope="col">Ação</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton Thornton Thornton Thornton Thornton Thornton Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="tbody"></tbody>
                     </table>
                 </div>
             </div>
