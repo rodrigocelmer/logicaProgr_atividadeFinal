@@ -106,10 +106,10 @@ input[type=submit]{
     cursor: pointer;
 }
 
-td{
+/* td{
     text-align: center;
     width: 50px;
-}
+} */
 
 .editDeleteBtn{
     width: 150px;
@@ -130,15 +130,15 @@ td{
     top: 100px;
 }
 
-table{
+/* table{
     width: 100vw;
     margin-top: 50px;
     position: fixed;
     top: 150px;
-}
+} */
 
-tr{
-    box-shadow: 0px 1px 0px 0px darkgray;
+thead{
+    box-shadow: 0px 3px 0px 0px black;
 }
 
 .mainPageLogin {

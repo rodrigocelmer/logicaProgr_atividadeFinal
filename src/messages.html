@@ -9,38 +9,63 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="container-fluid vh-100">
-    <div class="row h-100">
-        <div class="col-6">
-            <h1>Meus recados</h1>
-        </div>
-        <div class="col-6">
-            <button class="btn btn-outline-secondary logoutBtn">
-                <a href="./index.html">Logout</a>
-            </button>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form id="form_messages">
-                    <input required class="form-control inputMessages" type="text" name="input_msgDescr" id="input_msgDescr" placeholder="Descrição">
-                    <input required class="form-control inputMessages" type="text" name="input_msgDetails" id="input_msgDetails" placeholder="Detalhamento">
-                    <input class="btn btn-outline-secondary buttonEnter" type="submit" value="Salvar">
-                </form>
+<body class="container-fluid vh-100 bg-dark">
+    <div class="row h-100 bg-info d-flex">
+        <div class="col h-75 bg-secondary">                     <!-- work from here -->
+            <div class="row justify-content-between">   <!-- meus recados logout -->
+                <div class="col-3 bg-body">
+                    Meus Recados
+                </div>
+                <div class="col-1 bg-body">
+                    Logout Btn
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Descrição</th>
-                        <th>Detalhamento</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody"></tbody>
-            </table>
-        </div>
+            <div class="row m-3">                           <!-- inputs -->
+                <div class="col-4 bg-success">
+                    Input 1
+                </div>
+                <div class="col-4 bg-success">
+                    Input 2
+                </div>
+                <div class="col-2 bg-warning">
+                    Btn salvar
+                </div>
+            </div>
+            <div class="row bg-body">
+                <div class="col table-responsive">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Detalhamento</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton Thornton Thornton Thornton Thornton Thornton Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>                                                      <!-- to here -->
     </div>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/messages.js"></script>
