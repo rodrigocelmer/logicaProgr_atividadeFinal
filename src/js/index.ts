@@ -17,6 +17,21 @@ interface UserMessages{
 
 let msgIdToDelete = 0
 
+var alertPlaceholder = document.getElementById('liveAlertPlaceholder') as HTMLElement
+
+function alertBs(message: string, type: string) {
+  var wrapper = document.createElement('div')
+  tbody.innerHTML += '<div class="col-1 alert alert-success' + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+  alertPlaceholder.append(wrapper)
+}
+
+// if (alertTrigger) {
+//   alertTrigger.addEventListener('click', function () {
+//     alertBs('Nice, you triggered this alert message!', 'success')
+//   })
+// }
+
 const messageToDelete = (id: number) => {
     msgIdToDelete = id;
 }
@@ -126,6 +141,8 @@ const saveMessage = (event: Event) => {
     form_messages.reset()
 
     showUserMessages();
+
+    alertBs('Nice, you triggered this alert message!', 'success')
 }
 
 const showUserMessages = () => {
