@@ -20,7 +20,6 @@ const readLocalStorage = (option) => {
 };
 const addNewUser = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
-    console.log("addNewUser");
     const newUserName = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_createUser.value, newUserPassword = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_createPassword.value, repeatPassword = form_createAccount === null || form_createAccount === void 0 ? void 0 : form_createAccount.input_repeatPassword.value, users = readLocalStorage('users');
     const userFind = users.find(user => user.userName === newUserName);
     if (userFind) {
@@ -43,7 +42,6 @@ const addNewUser = (event) => {
 };
 const accessInbox = (event) => {
     event === null || event === void 0 ? void 0 : event.preventDefault();
-    console.log("accessInbox");
     const accessUserName = form_access === null || form_access === void 0 ? void 0 : form_access.input_userName.value, accessPassword = form_access === null || form_access === void 0 ? void 0 : form_access.input_password.value, users = readLocalStorage('users');
     const userFind = users.find(user => user.userName === accessUserName);
     if (userFind && (userFind.userPassword === accessPassword)) {
@@ -83,8 +81,8 @@ const showUserMessages = () => {
                     <td>${message.description}</td>
                     <td>${message.details}</td>
                     <td>
-                        <button class="editDeleteBtn" onclick="editMessage(${message.id})">Editar</button>
-                        <button class="editDeleteBtn" onclick="deleteMessage(${message.id})">Apagar</button>
+                        <button class="editDeleteBtn btn btn-outline-secondary text-black bg-success" onclick="editMessage(${message.id})">Editar</button>
+                        <button class="editDeleteBtn btn btn-outline-secondary text-black bg-danger" onclick="deleteMessage(${message.id})">Apagar</button>
                     </td>
                 </tr>
             `;

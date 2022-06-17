@@ -19,10 +19,9 @@ body {
     }
 }
 
-h1{
+.customColorPurple{
     color: #4912a3;
-    font-weight: 700;
-    font-size: 50px;
+    font-weight: 600;
 }
 
 a {
