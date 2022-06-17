@@ -15,6 +15,12 @@ interface UserMessages{
     details:        string;
 }
 
+let msgIdToDelete = 0
+
+const messageToDelete = (id: number) => {
+    msgIdToDelete = id;
+}
+
 const readLocalStorage = (option: string): Array<User> | Array<UserMessages> | string => {
     let infoLocalStorage: Array<User> | Array<UserMessages> | string;
 
@@ -142,7 +148,7 @@ const showUserMessages = () => {
                     <td>${message.details}</td>
                     <td>
                         <button class="editDeleteBtn btn btn-success" onclick="editMessage(${message.id})">Editar</button>
-                        <button class="editDeleteBtn btn btn-danger" onclick="deleteMessage(${message.id})">Apagar</button>
+                        <button class="editDeleteBtn btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="messageToDelete(${message.id})">Apagar</button>
                     </td>
                 </tr>
             `;
@@ -153,7 +159,7 @@ const showUserMessages = () => {
 const deleteMessage = (id: number) => {
     const messages = readLocalStorage('messages') as Array<UserMessages>;
 
-    const msgIndex = messages.findIndex((message) => message.id === id);
+    const msgIndex = messages.findIndex((message) => message.id === msgIdToDelete);
 
     messages.splice(msgIndex, 1);
 

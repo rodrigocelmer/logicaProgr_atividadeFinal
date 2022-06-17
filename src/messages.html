@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body class="container-fluid vh-100">
+<body class="container-fluid vh-100">  
     <div class="row h-100 d-flex">
         <div class="col">
             <div class="row justify-content-between">
@@ -48,6 +48,22 @@
                         </thead>
                         <tbody id="tbody"></tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza que quer deletar o recado?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteMessage()" data-bs-dismiss="modal">Confirmar</button>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>

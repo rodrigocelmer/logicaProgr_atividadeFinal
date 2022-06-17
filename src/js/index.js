@@ -1,5 +1,9 @@
 "use strict";
 const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
+let msgIdToDelete = 0;
+const messageToDelete = (id) => {
+    msgIdToDelete = id;
+};
 const readLocalStorage = (option) => {
     let infoLocalStorage;
     switch (option) {
@@ -82,7 +86,7 @@ const showUserMessages = () => {
                     <td>${message.details}</td>
                     <td>
                         <button class="editDeleteBtn btn btn-success" onclick="editMessage(${message.id})">Editar</button>
-                        <button class="editDeleteBtn btn btn-danger" onclick="deleteMessage(${message.id})">Apagar</button>
+                        <button class="editDeleteBtn btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="messageToDelete(${message.id})">Apagar</button>
                     </td>
                 </tr>
             `;
@@ -91,7 +95,7 @@ const showUserMessages = () => {
 };
 const deleteMessage = (id) => {
     const messages = readLocalStorage('messages');
-    const msgIndex = messages.findIndex((message) => message.id === id);
+    const msgIndex = messages.findIndex((message) => message.id === msgIdToDelete);
     messages.splice(msgIndex, 1);
     localStorage.setItem('messages', JSON.stringify(messages));
     showUserMessages();
