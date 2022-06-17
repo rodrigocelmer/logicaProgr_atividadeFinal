@@ -19,18 +19,12 @@ let msgIdToDelete = 0
 
 var alertPlaceholder = document.getElementById('liveAlertPlaceholder') as HTMLElement
 
-function alertBs(message: string, type: string) {
+function alertUserCreated() {
   var wrapper = document.createElement('div')
-  tbody.innerHTML += '<div class="col-1 alert alert-success' + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+  wrapper.innerHTML += '<div class="alert alert-success' + ' alert-dismissible" role="alert">' + 'Usuário criado com sucesso!' + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
   alertPlaceholder.append(wrapper)
 }
-
-// if (alertTrigger) {
-//   alertTrigger.addEventListener('click', function () {
-//     alertBs('Nice, you triggered this alert message!', 'success')
-//   })
-// }
 
 const messageToDelete = (id: number) => {
     msgIdToDelete = id;
@@ -89,7 +83,7 @@ const addNewUser = (event: Event) => {
 
     localStorage.setItem('users', JSON.stringify(users))
 
-    alert("Novo usuário criado com sucesso!")
+    alertUserCreated();
 
     form_createAccount.reset();
 }
@@ -141,8 +135,6 @@ const saveMessage = (event: Event) => {
     form_messages.reset()
 
     showUserMessages();
-
-    alertBs('Nice, you triggered this alert message!', 'success')
 }
 
 const showUserMessages = () => {

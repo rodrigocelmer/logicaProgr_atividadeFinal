@@ -2,16 +2,11 @@
 const form_access = document.querySelector('#form_access'), form_createAccount = document.querySelector('#form_createAccount'), form_messages = document.querySelector('#form_messages'), tbody = document.querySelector('#tbody');
 let msgIdToDelete = 0;
 var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
-function alertBs(message, type) {
+function alertUserCreated() {
     var wrapper = document.createElement('div');
-    tbody.innerHTML += '<div class="col-1 alert alert-success' + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    wrapper.innerHTML += '<div class="alert alert-success' + ' alert-dismissible" role="alert">' + 'Usuário criado com sucesso!' + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     alertPlaceholder.append(wrapper);
 }
-// if (alertTrigger) {
-//   alertTrigger.addEventListener('click', function () {
-//     alertBs('Nice, you triggered this alert message!', 'success')
-//   })
-// }
 const messageToDelete = (id) => {
     msgIdToDelete = id;
 };
@@ -52,7 +47,7 @@ const addNewUser = (event) => {
         userPassword: newUserPassword
     });
     localStorage.setItem('users', JSON.stringify(users));
-    alert("Novo usuário criado com sucesso!");
+    alertUserCreated();
     form_createAccount.reset();
 };
 const accessInbox = (event) => {
@@ -82,7 +77,6 @@ const saveMessage = (event) => {
     localStorage.setItem('messages', JSON.stringify(messages));
     form_messages.reset();
     showUserMessages();
-    alertBs('Nice, you triggered this alert message!', 'success');
 };
 const showUserMessages = () => {
     const messages = readLocalStorage('messages'), userLogged = readLocalStorage('userLogged');
