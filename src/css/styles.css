@@ -19,7 +19,7 @@ body {
 
 @media (min-width: 768px) { 
     body {
-        /* overflow: hidden; */
+        overflow: hidden;
         background-repeat: no-repeat;
     }
 }
