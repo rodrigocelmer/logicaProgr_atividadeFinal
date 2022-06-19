@@ -6,32 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body id="bodyIndex">
-    <section class="leftImage">
-        
-    </section>
-    <section class="mainPage">
-        <section class="mainPageVoid">
-            
-        </section>
-        <section class="mainPageLogin">
-            <form id="form_access">
-                <p class="mainMessage">
-                    ENTRAR NO SISTEMA DE RECADOS
-                </p>
-                <p class="userInputs">
-                    <input required type="text" name="input_userName" id="input_userName" placeholder="User name">
-                    <input required type="password" name="input_password" id="input_password" placeholder="Password">
-                </p>
-                <input type="submit" class="buttonEnter" value="ENTRAR"></input>
-                <p class="createAccount">
-                    <a href="./createAccount.html">CRIAR CONTA</a>
-                </p>
-            </form>
-        </section>
-    </section>
+<body class="container-fluid vh-100 bodyIndex">
+    <div id="liveAlertPlaceholder"></div>
+    <div class="row h-100 d-flex justify-content-center align-items-center justify-content-around">
+        <div class="mainPageLogin col-md-6 col-sm-8 bg-info h-75 bg-opacity-25 rounded-3 my-1">
+            <div class="row h-100 d-flex flex-column justify-content-center align-items-center">
+                <form id="form_access">
+                    <div class="mainMessage">
+                        ENTRAR
+                    </div>
+                    <input required type="text" class="form-control m-1" name="input_userName" id="input_userName" placeholder="User name">
+                    <input required type="password" class="form-control m-1" name="input_password" id="input_password" placeholder="Password">
+                    <input type="submit" class="buttonEnter btn btn-outline-secondary col-10 m-1" value="ENTRAR"></input>
+                </form>
+            </div>
+        </div>
+        <div class="createAccountPage col-md-4 col-sm-8 bg-black h-75 bg-opacity-25 rounded-3 my-1">
+            <div class="row h-100 text-light d-flex flex-column justify-content-center align-items-center">
+                <form id="form_createAccount">
+                    <div class="createAccountMessage">
+                        CRIAR CONTA
+                    </div>
+                    <input required type="text" class="form-control m-1" name="input_createUser" id="input_createUser" placeholder="User name">
+                    <input required type="password" class="form-control m-1" name="input_createPassword" id="input_createPassword" placeholder="Password">
+                    <input required type="password" class="form-control m-1" name="input_repeatPassword" id="input_repeatPassword" placeholder="Repeat password">
+                    <input type="submit" class="buttonCreateAccount btn btn-outline-secondary col-10 m-1" value="CRIAR CONTA"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/index.js"></script>
 </body>
 </html>

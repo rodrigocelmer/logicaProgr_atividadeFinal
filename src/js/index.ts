@@ -15,6 +15,21 @@ interface UserMessages{
     details:        string;
 }
 
+let msgIdToDelete = 0
+
+var alertPlaceholder = document.getElementById('liveAlertPlaceholder') as HTMLElement
+
+function alertUserCreated() {
+  var wrapper = document.createElement('div')
+  wrapper.innerHTML += '<div class="alert alert-success' + ' alert-dismissible" role="alert">' + 'Usuário criado com sucesso!' + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+  alertPlaceholder.append(wrapper)
+}
+
+const messageToDelete = (id: number) => {
+    msgIdToDelete = id;
+}
+
 const readLocalStorage = (option: string): Array<User> | Array<UserMessages> | string => {
     let infoLocalStorage: Array<User> | Array<UserMessages> | string;
 
@@ -68,11 +83,9 @@ const addNewUser = (event: Event) => {
 
     localStorage.setItem('users', JSON.stringify(users))
 
-    alert("Novo usuário criado com sucesso!")
+    alertUserCreated();
 
     form_createAccount.reset();
-
-    document.location.href = './index.html'
 }
 
 const accessInbox = (event: Event) => {
@@ -143,8 +156,8 @@ const showUserMessages = () => {
                     <td>${message.description}</td>
                     <td>${message.details}</td>
                     <td>
-                        <button class="editDeleteBtn" onclick="editMessage(${message.id})">Editar</button>
-                        <button class="editDeleteBtn" onclick="deleteMessage(${message.id})">Apagar</button>
+                        <button class="editDeleteBtn btn btn-success" onclick="editMessage(${message.id})">Editar</button>
+                        <button class="editDeleteBtn btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="messageToDelete(${message.id})">Apagar</button>
                     </td>
                 </tr>
             `;
@@ -155,7 +168,7 @@ const showUserMessages = () => {
 const deleteMessage = (id: number) => {
     const messages = readLocalStorage('messages') as Array<UserMessages>;
 
-    const msgIndex = messages.findIndex((message) => message.id === id);
+    const msgIndex = messages.findIndex((message) => message.id === msgIdToDelete);
 
     messages.splice(msgIndex, 1);
 
